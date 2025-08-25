@@ -92,7 +92,7 @@ export default function AdvancedContact() {
   ]
 
   return (
-    <section 
+    <motion.section 
       ref={inViewRef}
       className="min-h-screen py-20 relative overflow-hidden"
       style={{ y, opacity }}
@@ -372,6 +372,6 @@ export default function AdvancedContact() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
