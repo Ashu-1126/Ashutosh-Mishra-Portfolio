@@ -24,8 +24,9 @@ const codingProfiles = [
     profileUrl: "https://hackerrank.com/ashutosh161204",
     stats: {
       problemsSolved: 200,
-      gold_badge: 2,
-      silver_badge: 3
+      contestRating: 1600,
+      ranking: "Top 15%",
+      streak: 30
     },
     color: "from-green-500 to-emerald-600",
     icon: Target,
