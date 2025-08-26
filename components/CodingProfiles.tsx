@@ -20,8 +20,8 @@ const codingProfiles = [
   },
   {
     platform: "HackerRank",
-    username: "your_hackerrank_username",
-    profileUrl: "https://hackerrank.com/your_hackerrank_username",
+    username: "ashutosh161204",
+    profileUrl: "https://hackerrank.com/ashutosh161204",
     stats: {
       problemsSolved: 200,
       contestRating: 1600,
@@ -34,10 +34,10 @@ const codingProfiles = [
   },
   {
     platform: "GeeksforGeeks",
-    username: "your_gfg_username",
-    profileUrl: "https://auth.geeksforgeeks.org/user/your_gfg_username",
+    username: "ashutosh02ct",
+    profileUrl: "https://auth.geeksforgeeks.org/user/ashutosh02ct",
     stats: {
-      problemsSolved: 180,
+      problemsSolved: 30,
       contestRating: 1700,
       ranking: "Top 12%",
       streak: 35
@@ -48,8 +48,8 @@ const codingProfiles = [
   },
   {
     platform: "Codeforces",
-    username: "your_codeforces_username",
-    profileUrl: "https://codeforces.com/profile/your_codeforces_username",
+    username: "ashu_igo",
+    profileUrl: "https://codeforces.com/profile/ashu_igo",
     stats: {
       problemsSolved: 120,
       contestRating: 1400,
