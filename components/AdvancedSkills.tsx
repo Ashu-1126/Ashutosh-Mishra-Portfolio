@@ -114,7 +114,7 @@ export default function AdvancedSkills() {
   }, [inView])
 
   return (
-    <section 
+    <motion.section 
       ref={inViewRef}
       className="min-h-screen py-20 relative overflow-hidden"
       style={{ y, opacity }}
@@ -365,6 +365,6 @@ export default function AdvancedSkills() {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </motion.section>
   )
 }
