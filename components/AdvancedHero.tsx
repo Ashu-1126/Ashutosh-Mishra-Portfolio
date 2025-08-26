@@ -1,253 +1,221 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { gsap } from 'gsap'
 import { TextPlugin } from 'gsap/TextPlugin'
-import Image from 'next/image'
 import { AnimatePresence } from 'framer-motion'
+import { ArrowDown, Code, Database, Cloud, Brain, Globe, Shield, Zap, Cpu, Server, Lock, Monitor, Smartphone } from 'lucide-react'
 
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(TextPlugin)
-}
+gsap.registerPlugin(TextPlugin)
 
 export default function AdvancedHero() {
+  const [currentTitle, setCurrentTitle] = useState(0)
+  const [isLoaded, setIsLoaded] = useState(false)
   const heroRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLHeadingElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
-  const [currentTitleIndex, setCurrentTitleIndex] = useState(0)
+  const textRef = useRef<HTMLDivElement>(null)
 
-  const rotatingTitles = [
-    "FULL STACK DEVELOPER",
-    "AI/ML ENTHUSIAST", 
-    "PROBLEM SOLVER",
-    "FINAL YEAR CSE STUDENT"
+  const titles = [
+    "Full Stack Developer",
+    "AI/ML Enthusiast", 
+    "Problem Solver",
+    "Final Year CSE Student"
   ]
 
   useEffect(() => {
-    // Rotate through titles every 2 seconds
-    const titleInterval = setInterval(() => {
-      setCurrentTitleIndex(prev => (prev + 1) % rotatingTitles.length)
-    }, 2000)
-
-    return () => clearInterval(titleInterval)
-  }, [])
-
-  useEffect(() => {
-    if (!heroRef.current || !textRef.current || !imageRef.current) return
-
-    const tl = gsap.timeline()
-
-    // Hero entrance animation
-    tl.fromTo(heroRef.current, 
-      { opacity: 0, y: 100 },
-      { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" }
-    )
-
-    // Image animation
-    tl.fromTo(imageRef.current,
-      { scale: 0, rotation: -180 },
-      { scale: 1, rotation: 0, duration: 1, ease: "back.out(1.7)" },
-      "-=1"
-    )
+    setIsLoaded(true)
+    
+    if (textRef.current) {
+      const tl = gsap.timeline()
+      tl.fromTo(textRef.current, 
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+      )
+    }
 
     // Floating icons animation
     gsap.to(".floating-icon", {
       y: -20,
-      duration: 2,
+      duration: 3,
       ease: "power2.inOut",
       stagger: 0.2,
       repeat: -1,
       yoyo: true
     })
-
-    return () => {
-      tl.kill()
-    }
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTitle((prev) => (prev + 1) % titles.length)
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [titles.length])
 
   return (
     <section 
       ref={heroRef}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900"
     >
-      {/* Cyberpunk Grid Background */}
-      <div className="absolute inset-0 cyber-grid opacity-10"></div>
-      
-      {/* Matrix Rain Effect */}
-      <div className="absolute inset-0 matrix-bg opacity-5"></div>
+      {/* Professional Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-20 left-20 w-96 h-96 bg-blue-100/30 dark:bg-blue-900/20 rounded-full blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-20 w-80 h-80 bg-indigo-100/30 dark:bg-indigo-900/20 rounded-full blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
 
-      {/* Holographic Orbs */}
-      <motion.div
-        className="absolute top-20 left-20 w-96 h-96 rounded-full blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, rgba(79, 172, 254, 0.2) 0%, rgba(0, 242, 254, 0.1) 50%, rgba(188, 19, 254, 0.05) 100%)'
-        }}
-        animate={{
-          x: [0, 100, 0],
-          y: [0, -50, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
+      {/* Floating Tech Icons */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[
+          { icon: Code, x: "10%", y: "20%", delay: 0 },
+          { icon: Database, x: "85%", y: "15%", delay: 0.5 },
+          { icon: Cloud, x: "15%", y: "80%", delay: 1 },
+          { icon: Brain, x: "80%", y: "75%", delay: 1.5 },
+          { icon: Globe, x: "50%", y: "10%", delay: 2 },
+          { icon: Shield, x: "5%", y: "60%", delay: 2.5 },
+          { icon: Zap, x: "90%", y: "40%", delay: 3 },
+          { icon: Cpu, x: "70%", y: "25%", delay: 3.5 },
+          { icon: Server, x: "25%", y: "90%", delay: 4 },
+          { icon: Lock, x: "60%", y: "85%", delay: 4.5 },
+          { icon: Monitor, x: "40%", y: "30%", delay: 5 },
+          { icon: Smartphone, x: "75%", y: "60%", delay: 5.5 }
+        ].map((item, index) => (
           <motion.div
-            className="text-center lg:text-left"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            {/* Greeting */}
-            <motion.p 
-              className="text-xl md:text-2xl text-cyan-400 tech-font mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
-            >
-              <span className="neon-cyan-glow">GREETINGS, USER</span>
-            </motion.p>
-
-            {/* Name */}
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6 cyber-font"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-            >
-              <span className="holographic-text neon-pulse">ASHUTOSH</span>
-              <br />
-              <span className="holographic-text neon-pulse" style={{ animationDelay: '0.5s' }}>MISHRA</span>
-            </motion.h1>
-
-            {/* Rotating Titles Animation */}
-            <motion.div
-              className="mb-8 h-12 flex items-center justify-center lg:justify-start"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.5 }}
-            >
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={currentTitleIndex}
-                  className="text-xl md:text-2xl text-gray-300 tech-font holographic-text neon-pulse"
-                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -20, scale: 0.8 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                  {rotatingTitles[currentTitleIndex]}
-                </motion.p>
-              </AnimatePresence>
-            </motion.div>
-
-            {/* Static Description */}
-            <motion.p 
-              className="text-lg md:text-xl text-gray-400 tech-font mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 2 }}
-            >
-              Final Year Computer Science Engineering Student | AI/ML Enthusiast | Problem Solver
-            </motion.p>
-
-            {/* Action Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 2.5 }}
-            >
-              <motion.button
-                className="cyber-button text-lg px-8 py-4"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                EXPLORE PORTFOLIO
-              </motion.button>
-              <motion.button
-                className="cyber-button text-lg px-8 py-4"
-                style={{
-                  background: 'linear-gradient(45deg, var(--neon-pink), var(--neon-purple))'
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                DOWNLOAD CV
-              </motion.button>
-            </motion.div>
-
-            {/* Floating Tech Icons */}
-            <div className="relative mt-12">
-              {['React', 'Node.js', 'Python', 'AI/ML'].map((tech, index) => (
-                <motion.div
-                  key={tech}
-                  className="floating-icon absolute inline-block px-4 py-2 bg-gray-800/50 backdrop-blur-sm border border-cyan-500/30 rounded-full text-cyan-400 text-sm tech-font"
-                  style={{
-                    left: `${20 + index * 20}%`,
-                    top: '0px',
-                  }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 3 + index * 0.2 }}
-                >
-                  {tech}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right Content - Profile Image */}
-          <motion.div
-            ref={imageRef}
-            className="flex justify-center lg:justify-end"
+            key={index}
+            className={`floating-icon absolute text-blue-400/40 dark:text-blue-300/40`}
+            style={{ left: item.x, top: item.y }}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
+            transition={{ delay: item.delay, duration: 0.5 }}
+          >
+            <item.icon size={24} />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="container-professional relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Content */}
+          <motion.div
+            ref={textRef}
+            className="text-center lg:text-left space-y-8"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white mb-6 professional-title">
+                Hello, I'm{' '}
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                  Ashutosh Mishra
+                </span>
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="h-20 flex items-center justify-center lg:justify-start"
+            >
+              <h2 className="text-2xl md:text-3xl font-semibold text-slate-700 dark:text-slate-300 professional-subtitle">
+                {titles[currentTitle]}
+              </h2>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+            >
+              Passionate about creating innovative solutions and turning ideas into reality. 
+              Specialized in modern web technologies and emerging AI/ML trends.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <button className="btn-primary text-lg px-8 py-4">
+                View My Work
+              </button>
+              <button className="btn-secondary text-lg px-8 py-4">
+                Download Resume
+              </button>
+            </motion.div>
+
+            {/* Professional Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1 }}
+              className="grid grid-cols-3 gap-6 pt-8"
+            >
+              {[
+                { number: "50+", label: "Projects" },
+                { number: "3+", label: "Years Experience" },
+                { number: "100%", label: "Client Satisfaction" }
+              ].map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm text-slate-600 dark:text-slate-400 font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Right Image */}
+          <motion.div
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="relative">
-              {/* Holographic Frame */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 p-1 animate-spin" style={{ animationDuration: '10s' }}>
-                <div className="w-full h-full rounded-full bg-gray-900"></div>
-              </div>
-              
-              {/* Profile Image */}
-              <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-cyan-500/50">
+              {/* Professional Frame */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 rounded-3xl transform rotate-3 scale-105 opacity-20"></div>
+              <div className="relative bg-white dark:bg-slate-800 rounded-3xl p-4 shadow-professional-lg">
                 <Image
                   src="/WhatsApp Image 2025-06-29 at 11.32.23_989b65e5.jpg"
                   alt="Ashutosh Mishra"
-                  fill
-                  className="object-cover"
+                  width={400}
+                  height={500}
+                  className="rounded-2xl object-cover w-full h-auto"
                   priority
                 />
-                
-                {/* Holographic Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-transparent to-purple-500/20 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-
-              {/* Floating Elements Around Image */}
-              <motion.div
-                className="absolute -top-4 -right-4 w-8 h-8 bg-cyan-400 rounded-full neon-pulse"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute -bottom-4 -left-4 w-6 h-6 bg-purple-400 rounded-full neon-pulse"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute top-1/2 -right-8 w-4 h-4 bg-pink-400 rounded-full neon-pulse"
-                animate={{ scale: [1, 1.5, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
             </div>
           </motion.div>
         </div>
@@ -256,22 +224,17 @@ export default function AdvancedHero() {
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 4 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
       >
         <motion.div
-          className="w-6 h-10 border-2 border-cyan-400 rounded-full flex justify-center"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
+          className="text-slate-600 dark:text-slate-400"
         >
-          <motion.div
-            className="w-1 h-3 bg-cyan-400 rounded-full mt-2"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+          <ArrowDown size={24} />
         </motion.div>
-        <p className="text-cyan-400 text-sm mt-2 tech-font text-center">SCROLL TO EXPLORE</p>
       </motion.div>
     </section>
   )

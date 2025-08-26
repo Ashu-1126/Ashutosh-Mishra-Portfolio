@@ -79,7 +79,7 @@ export default function AdvancedContact() {
       title: 'Phone',
       value: '+91 98765 43210',
       link: 'tel:+919876543210',
-      color: 'from-green-500 to-green-600'
+      color: 'from-emerald-500 to-emerald-600'
     },
     {
       icon: MapPin,
@@ -93,13 +93,13 @@ export default function AdvancedContact() {
   return (
     <motion.section 
       ref={inViewRef}
-      className="min-h-screen py-20 relative overflow-hidden"
+      className="min-h-screen py-20 relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900"
       style={{ y }}
     >
-      {/* Background Elements */}
+      {/* Professional Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-20 left-20 w-96 h-96 bg-blue-400/5 dark:bg-blue-500/5 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-96 h-96 bg-blue-100/30 dark:bg-blue-900/20 rounded-full blur-3xl"
           animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
@@ -111,7 +111,7 @@ export default function AdvancedContact() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-20 w-80 h-80 bg-purple-400/5 dark:bg-purple-500/5 rounded-full blur-3xl"
+          className="absolute bottom-20 right-20 w-80 h-80 bg-indigo-100/30 dark:bg-indigo-900/20 rounded-full blur-3xl"
           animate={{
             x: [0, -100, 0],
             y: [0, 50, 0],
@@ -124,7 +124,7 @@ export default function AdvancedContact() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <div className="container-professional relative z-10">
         {/* Header */}
         <motion.div
           className="text-center mb-20"
@@ -134,7 +134,7 @@ export default function AdvancedContact() {
           viewport={{ once: true }}
         >
           <motion.h2 
-            className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-red-400 bg-clip-text text-transparent"
+            className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent professional-title"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -143,7 +143,7 @@ export default function AdvancedContact() {
             Get In Touch
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+            className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto professional-subtitle"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -162,10 +162,10 @@ export default function AdvancedContact() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-8">
+            <h3 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-8 professional-title">
               Let's Connect
             </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-12 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-12 leading-relaxed professional-subtitle">
               I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and innovation.
             </p>
 
@@ -175,7 +175,7 @@ export default function AdvancedContact() {
                 <motion.a
                   key={info.title}
                   href={info.link}
-                  className="group flex items-center gap-4 p-6 bg-white/60 dark:bg-gray-800/60 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300"
+                  className="group flex items-center gap-4 p-6 professional-card rounded-2xl hover-lift"
                   whileHover={{ scale: 1.02, x: 10 }}
                   whileTap={{ scale: 0.98 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -187,10 +187,10 @@ export default function AdvancedContact() {
                     <info.icon size={28} className="text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">
+                    <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-1">
                       {info.title}
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-slate-600 dark:text-slate-400">
                       {info.value}
                     </p>
                   </div>
@@ -206,13 +206,13 @@ export default function AdvancedContact() {
               transition={{ duration: 0.8, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
+              <h4 className="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4">
                 Follow Me
               </h4>
               <div className="flex gap-4">
                 {[
                   { name: 'LinkedIn', href: '#', color: 'bg-blue-600' },
-                  { name: 'GitHub', href: '#', color: 'bg-gray-800' },
+                  { name: 'GitHub', href: '#', color: 'bg-slate-800' },
                   { name: 'Twitter', href: '#', color: 'bg-blue-400' }
                 ].map((social) => (
                   <motion.a
@@ -245,7 +245,7 @@ export default function AdvancedContact() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Name
                   </label>
                   <input
@@ -254,7 +254,7 @@ export default function AdvancedContact() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
+                    className="form-input w-full transition-professional focus-ring"
                     placeholder="Your name"
                   />
                 </motion.div>
@@ -265,7 +265,7 @@ export default function AdvancedContact() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Email
                   </label>
                   <input
@@ -274,7 +274,7 @@ export default function AdvancedContact() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
+                    className="form-input w-full transition-professional focus-ring"
                     placeholder="your.email@example.com"
                   />
                 </motion.div>
@@ -286,7 +286,7 @@ export default function AdvancedContact() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Subject
                 </label>
                 <input
@@ -295,7 +295,7 @@ export default function AdvancedContact() {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
+                  className="form-input w-full transition-professional focus-ring"
                   placeholder="What's this about?"
                 />
               </motion.div>
@@ -306,7 +306,7 @@ export default function AdvancedContact() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Message
                 </label>
                 <textarea
@@ -315,7 +315,7 @@ export default function AdvancedContact() {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm resize-none"
+                  className="form-input w-full resize-none transition-professional focus-ring"
                   placeholder="Tell me about your project..."
                 />
               </motion.div>
@@ -325,7 +325,7 @@ export default function AdvancedContact() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-3 p-4 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-xl border border-green-200 dark:border-green-700"
+                  className="flex items-center gap-3 p-4 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-xl border border-emerald-200 dark:border-emerald-700"
                 >
                   <CheckCircle className="w-5 h-5" />
                   <span>Message sent successfully! I'll get back to you soon.</span>
@@ -346,7 +346,7 @@ export default function AdvancedContact() {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                className="btn-primary w-full text-lg py-4 px-8 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 20 }}
