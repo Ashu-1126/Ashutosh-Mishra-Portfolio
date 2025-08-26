@@ -27,7 +27,6 @@ export default function AdvancedContact() {
   const { scrollYProgress } = useScroll()
   
   const y = useTransform(scrollYProgress, [0, 1], [0, -100])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   const { ref: inViewRef, inView } = useInView({
     threshold: 0.1,
@@ -95,7 +94,7 @@ export default function AdvancedContact() {
     <motion.section 
       ref={inViewRef}
       className="min-h-screen py-20 relative overflow-hidden"
-      style={{ y, opacity }}
+      style={{ y }}
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
