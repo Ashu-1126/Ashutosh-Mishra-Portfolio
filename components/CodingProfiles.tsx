@@ -6,13 +6,13 @@ import { ExternalLink, Trophy, Target, TrendingUp, Award } from 'lucide-react'
 const codingProfiles = [
   {
     platform: "LeetCode",
-    username: "your_leetcode_username",
-    profileUrl: "https://leetcode.com/u/Ashutosh161204/",
+    username: "Ashutosh161204",
+    profileUrl: "https://leetcode.com/Ashutosh161204",
     stats: {
-      problemsSolved: 150,
-      contestRating: 1800,
-      ranking: "Top 10%",
-      streak: 45
+      problemsSolved: 200,
+      contestRating: 1400,
+      ranking: "Top 80%",
+      streak: 10
     },
     color: "from-orange-500 to-red-600",
     icon: Trophy,
