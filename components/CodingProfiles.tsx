@@ -7,7 +7,7 @@ const codingProfiles = [
   {
     platform: "LeetCode",
     username: "your_leetcode_username",
-    profileUrl: "https://leetcode.com/your_leetcode_username",
+    profileUrl: "https://leetcode.com/u/Ashutosh161204/",
     stats: {
       problemsSolved: 150,
       contestRating: 1800,
