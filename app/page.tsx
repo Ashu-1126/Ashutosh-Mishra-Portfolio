@@ -8,6 +8,7 @@ import AdvancedSkills from '../components/AdvancedSkills'
 import CodingProfiles from '../components/CodingProfiles'
 import AdvancedProjects from '../components/AdvancedProjects'
 import AdvancedContact from '../components/AdvancedContact'
+import AboutMe from '../components/AboutMe'
 import Footer from '../components/Footer'
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         
         <main>
           <AdvancedHero />
+          <AboutMe />
           <AdvancedSkills />
           <CodingProfiles />
           <AdvancedProjects />

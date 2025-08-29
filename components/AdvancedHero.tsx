@@ -172,29 +172,6 @@ export default function AdvancedHero() {
                 Download Resume
               </button>
             </motion.div>
-
-            {/* Professional Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1 }}
-              className="grid grid-cols-3 gap-6 pt-8"
-            >
-              {[
-                { number: "50+", label: "Projects" },
-                { number: "3+", label: "Years Experience" },
-                { number: "100%", label: "Client Satisfaction" }
-              ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400 font-medium">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </motion.div>
           </motion.div>
 
           {/* Right Image */}

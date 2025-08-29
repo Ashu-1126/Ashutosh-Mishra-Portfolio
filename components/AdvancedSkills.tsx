@@ -60,7 +60,7 @@ const skills: Skill[] = [
   {
     name: "Languages",
     level: 80,
-    icon: Cloud,
+    icon: Code,
     color: "from-indigo-500 to-indigo-600",
     gradient: "from-indigo-500/20 to-indigo-600/20",
     description: "Proficient in multiple programming languages for both development and problem-solving",

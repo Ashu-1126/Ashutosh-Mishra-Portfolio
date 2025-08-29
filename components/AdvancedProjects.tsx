@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ExternalLink, Github, Eye } from 'lucide-react'
+import Image from 'next/image'
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -16,7 +17,7 @@ const projects = [
     id: 1,
     title: "Protein Structure Prediction",
     description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
-    image: "/api/placeholder/400/300",
+    image: "/Screenshot 2025-08-29 175510.png",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
     github: "https://github.com/yourusername/ecommerce",
     live: "https://ecommerce-demo.com",
@@ -36,7 +37,7 @@ const projects = [
     id: 3,
     title: "Blood Group Detection using fingerprint",
     description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
-    image: "/api/placeholder/400/300",
+    image: "/Screenshot 2025-08-29 181813.png",
     technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
     github: "https://github.com/yourusername/task-manager",
     live: "https://task-manager-demo.com",
@@ -46,7 +47,7 @@ const projects = [
     id: 4,
     title: "Product Recommendation System",
     description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
-    image: "/api/placeholder/400/300",
+    image: "/Screenshot 2025-08-29 181238.png",
     technologies: ["React", "Chart.js", "OpenWeatherMap API", "Geolocation"],
     github: "https://github.com/yourusername/weather-dashboard",
     live: "https://weather-demo.com",
@@ -66,7 +67,7 @@ const projects = [
     id: 6,
     title: "Online Bookstore",
     description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
-    image: "/api/placeholder/400/300",
+    image: "/Screenshot 2025-08-29 182151.png",
     technologies: ["React", "D3.js", "Node.js", "PostgreSQL", "Redis"],
     github: "https://github.com/yourusername/social-analytics",
     live: "https://analytics-demo.com",
@@ -153,9 +154,16 @@ export default function AdvancedProjects() {
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
-                  <Eye className="w-16 h-16 text-blue-500" />
-                </div>
+                <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                style={{ objectFit: 'cover' }}
+                className="group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-300 flex items-center justify-center text-white text-lg font-bold">
+                {project.title}
+              </div>
                 <div className="absolute top-4 right-4">
                   <span className="px-3 py-1 rounded-full text-xs font-medium text-white bg-green-500">
                     {project.featured ? 'Featured' : ''}
