@@ -70,21 +70,21 @@ export default function AdvancedContact() {
     {
       icon: Mail,
       title: 'Email',
-      value: 'ashutosh.mishra@example.com',
-      link: 'mailto:ashutosh.mishra@example.com',
+      value: 'ashutosh161204@gmail.com',
+      link: 'mailto:ashutosh161204@gmail.com',
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: Phone,
       title: 'Phone',
-      value: '+91 98765 43210',
-      link: 'tel:+919876543210',
+      value: '+91 79853 65057',
+      link: 'tel:+917985365057',
       color: 'from-emerald-500 to-emerald-600'
     },
     {
       icon: MapPin,
       title: 'Location',
-      value: 'Mumbai, Maharashtra, India',
+      value: 'Prayagraj, Uttar Pradesh, India',
       link: '#',
       color: 'from-purple-500 to-purple-600'
     }
@@ -92,6 +92,7 @@ export default function AdvancedContact() {
 
   return (
     <motion.section 
+      id = "contact"
       ref={inViewRef}
       className="min-h-screen py-20 relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900"
       style={{ y }}
@@ -211,8 +212,8 @@ export default function AdvancedContact() {
               </h4>
               <div className="flex gap-4">
                 {[
-                  { name: 'LinkedIn', href: '#', color: 'bg-blue-600' },
-                  { name: 'GitHub', href: '#', color: 'bg-slate-800' },
+                  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ashutoshmishra-geez/', color: 'bg-blue-600' },
+                  { name: 'GitHub', href: 'https://github.com/Ashu-1126', color: 'bg-slate-800' },
                   { name: 'Twitter', href: '#', color: 'bg-blue-400' }
                 ].map((social) => (
                   <motion.a
@@ -316,7 +317,7 @@ export default function AdvancedContact() {
                   required
                   rows={6}
                   className="form-input w-full resize-none transition-professional focus-ring"
-                  placeholder="Tell me about your project..."
+                  placeholder="Open to discussion..."
                 />
               </motion.div>
 

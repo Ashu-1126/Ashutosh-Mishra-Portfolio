@@ -14,8 +14,8 @@ if (typeof window !== 'undefined') {
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, product management, shopping cart, and payment integration.",
+    title: "Protein Structure Prediction",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
     image: "/api/placeholder/400/300",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
     github: "https://github.com/yourusername/ecommerce",
@@ -24,8 +24,8 @@ const projects = [
   },
   {
     id: 2,
-    title: "AI Chat Application",
-    description: "Intelligent chat application powered by OpenAI's GPT model. Built with React and Python Flask backend, featuring real-time messaging and AI responses.",
+    title: "KavachG",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
     image: "/api/placeholder/400/300",
     technologies: ["React", "Python", "Flask", "OpenAI API", "WebSocket"],
     github: "https://github.com/yourusername/ai-chat",
@@ -34,8 +34,8 @@ const projects = [
   },
   {
     id: 3,
-    title: "Task Management System",
-    description: "Collaborative task management platform with real-time updates, drag-and-drop functionality, and team collaboration features.",
+    title: "Blood Group Detection using fingerprint",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
     image: "/api/placeholder/400/300",
     technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
     github: "https://github.com/yourusername/task-manager",
@@ -44,8 +44,8 @@ const projects = [
   },
   {
     id: 4,
-    title: "Weather Dashboard",
-    description: "Interactive weather dashboard with real-time data, charts, and location-based forecasting using OpenWeatherMap API.",
+    title: "Product Recommendation System",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
     image: "/api/placeholder/400/300",
     technologies: ["React", "Chart.js", "OpenWeatherMap API", "Geolocation"],
     github: "https://github.com/yourusername/weather-dashboard",
@@ -54,8 +54,8 @@ const projects = [
   },
   {
     id: 5,
-    title: "Portfolio Website",
-    description: "Modern portfolio website built with Next.js, featuring advanced animations, responsive design, and optimal performance.",
+    title: "Jarvis AI",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
     image: "/api/placeholder/400/300",
     technologies: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/yourusername/portfolio",
@@ -64,8 +64,8 @@ const projects = [
   },
   {
     id: 6,
-    title: "Social Media Analytics",
-    description: "Analytics dashboard for social media platforms with data visualization, trend analysis, and reporting capabilities.",
+    title: "Online Bookstore",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
     image: "/api/placeholder/400/300",
     technologies: ["React", "D3.js", "Node.js", "PostgreSQL", "Redis"],
     github: "https://github.com/yourusername/social-analytics",

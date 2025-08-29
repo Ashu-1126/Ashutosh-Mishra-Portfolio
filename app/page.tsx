@@ -8,6 +8,7 @@ import AdvancedSkills from '../components/AdvancedSkills'
 import CodingProfiles from '../components/CodingProfiles'
 import AdvancedProjects from '../components/AdvancedProjects'
 import AdvancedContact from '../components/AdvancedContact'
+import Footer from '../components/Footer'
 
 export default function Home() {
   return (
@@ -24,6 +25,8 @@ export default function Home() {
           <AdvancedProjects />
           <AdvancedContact />
         </main>
+
+        <Footer />{}
       </div>
     </>
   )

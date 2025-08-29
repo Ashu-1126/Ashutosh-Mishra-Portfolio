@@ -28,7 +28,7 @@ const skills: Skill[] = [
     color: "from-blue-500 to-blue-600",
     gradient: "from-blue-500/20 to-blue-600/20",
     description: "Building robust, scalable server-side applications",
-    technologies: ["Node.js", "Python", "Java", "Express", "Django", "Spring Boot"]
+    technologies: ["Node.js", "Express.js", "Mongoose", "Async", "JWT Auth", "REST API"]
   },
   {
     name: "Frontend Development",
@@ -37,43 +37,43 @@ const skills: Skill[] = [
     color: "from-purple-500 to-purple-600",
     gradient: "from-purple-500/20 to-purple-600/20",
     description: "Creating responsive and interactive user interfaces",
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]
+    technologies: ["React.js", "Bootstrap", "TypeScript", "Redux", "Tailwind CSS"]
   },
   {
-    name: "Database Design",
+    name: "ML/AI",
     level: 88,
-    icon: Database,
+    icon: Brain,
     color: "from-green-500 to-green-600",
     gradient: "from-green-500/20 to-green-600/20",
-    description: "Designing efficient and optimized database structures",
-    technologies: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Elasticsearch"]
+    description: "Implementing machine learning algorithms and analyzing data to solve complex problems",
+    technologies: ["TensorFlow", "Scikit-Learn", "YOLO", "NLP", "PyTorch"]
   },
   {
-    name: "Machine Learning",
+    name: "Databases",
     level: 75,
-    icon: Brain,
+    icon: Database,
     color: "from-orange-500 to-orange-600",
     gradient: "from-orange-500/20 to-orange-600/20",
-    description: "Implementing ML algorithms and data analysis",
-    technologies: ["TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "NumPy"]
+    description: "Designing and managing efficient, scalable database solutions",
+    technologies: ["PostrgreSQL", "MongoDB", "MySQL", "SQLite"]
   },
   {
-    name: "Cloud & DevOps",
+    name: "Languages",
     level: 80,
     icon: Cloud,
     color: "from-indigo-500 to-indigo-600",
     gradient: "from-indigo-500/20 to-indigo-600/20",
-    description: "Deploying and managing cloud infrastructure",
-    technologies: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"]
+    description: "Proficient in multiple programming languages for both development and problem-solving",
+    technologies: ["TypeScript", "Python", "C++", "SQL", "Java", "Dart(Basic)"]
   },
   {
-    name: "Mobile Development",
+    name: "Deployment Tools & Platforms",
     level: 70,
-    icon: Smartphone,
+    icon: Cloud,
     color: "from-pink-500 to-pink-600",
     gradient: "from-pink-500/20 to-pink-600/20",
-    description: "Building cross-platform mobile applications",
-    technologies: ["React Native", "Flutter", "Firebase", "App Store", "Play Store"]
+    description: "Automating the build, test, and deployment of applications to cloud environments",
+    technologies: ["Git", "Docker", "Vercel", "Hugging Face", "Postman", "Google Colab"]
   }
 ]
 
@@ -114,6 +114,7 @@ export default function AdvancedSkills() {
 
   return (
     <motion.section 
+      id = "skills"
       ref={inViewRef}
       className="min-h-screen py-20 relative overflow-hidden"
       style={{ y }}
@@ -280,8 +281,8 @@ export default function AdvancedSkills() {
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {[
-              "Git", "Docker", "Linux", "REST APIs", "GraphQL", "JWT",
-              "OAuth", "Microservices", "Agile", "Scrum", "Jira", "Postman"
+              "OOPs", "DBMS", "Linux", "OS", "DSA", "Networks",
+              "VS Code", "Jupyter", "Schema", "HTML", "OpenCV", "LLMs"
             ].map((tool, index) => (
               <motion.div
                 key={tool}
