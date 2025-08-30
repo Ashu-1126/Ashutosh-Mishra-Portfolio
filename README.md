@@ -1,4 +1,4 @@
-# 🚀 Ashutosh Mishra - God-Level Portfolio Website
+# 🚀 Ashutosh Mishra - Portfolio Website
 
 A cutting-edge, interactive portfolio website built with the latest web technologies and advanced UI/UX principles. This portfolio showcases not just technical skills, but demonstrates mastery of modern web development practices.
 
