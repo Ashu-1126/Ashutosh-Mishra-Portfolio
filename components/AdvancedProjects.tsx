@@ -40,7 +40,7 @@ const projects = [
     image: "/Screenshot 2025-08-29 181813.png",
     technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
     github: "https://github.com/yourusername/task-manager",
-    live: "https://task-manager-demo.com",
+    live: "https://huggingface.co/spaces/ikkariss-geeko/blood-group-predictor-app",
     featured: true
   },
   {
@@ -83,17 +83,17 @@ export default function AdvancedProjects() {
     if (!containerRef.current) return
 
     const cards = containerRef.current.querySelectorAll('.project-card')
-    
+
     cards.forEach((card, index) => {
-      gsap.fromTo(card, 
-        { 
-          opacity: 0, 
+      gsap.fromTo(card,
+        {
+          opacity: 0,
           y: 100,
           rotationY: -15,
           scale: 0.8
         },
-        { 
-          opacity: 1, 
+        {
+          opacity: 1,
           y: 0,
           rotationY: 0,
           scale: 1,
@@ -143,11 +143,16 @@ export default function AdvancedProjects() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           {projects.map((project, index) => (
-            <motion.div
+            <motion.a // Keep motion.a for the overall card animations
               key={project.id}
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
               className="project-card group relative bg-white/80 dark:bg-gray-800/80 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100/50 dark:border-gray-700/50 cursor-pointer backdrop-blur-sm overflow-hidden"
-              whileHover={{ scale: 1.05, y: -10, rotateY: 5 }}
-              whileTap={{ scale: 0.95 }}
+              // REMOVED: whileHover={{ scale: 1.05, y: -10, rotateY: 5 }}
+              // ADDED: A subtle lift, no scale/rotate
+              whileHover={{ y: -5 }} // Only a slight lift, no scaling
+              whileTap={{ scale: 0.98 }} // Keeps a slight tap effect if desired
               initial={{ opacity: 0, y: 100, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -155,15 +160,15 @@ export default function AdvancedProjects() {
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
                 <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                style={{ objectFit: 'cover' }}
-                className="group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-300 flex items-center justify-center text-white text-lg font-bold">
-                {project.title}
-              </div>
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-300 flex items-center justify-center text-white text-lg font-bold">
+                  {project.title}
+                </div>
                 <div className="absolute top-4 right-4">
                   <span className="px-3 py-1 rounded-full text-xs font-medium text-white bg-green-500">
                     {project.featured ? 'Featured' : ''}
@@ -195,37 +200,24 @@ export default function AdvancedProjects() {
                 {/* Action Buttons */}
                 <div className="flex gap-2">
                   {project.github && (
-                    <motion.a
+                    <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-lg text-center text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      onClick={(e) => e.stopPropagation()} // Important: Prevents the parent link from firing
                     >
                       <Github className="w-4 h-4 inline mr-2" />
                       Code
-                    </motion.a>
+                    </a>
                   )}
-                  {project.live && (
-                    <motion.a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg text-center text-sm font-medium hover:bg-blue-700 transition-colors duration-200"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <ExternalLink className="w-4 h-4 inline mr-2" />
-                      Live
-                    </motion.a>
-                  )}
+                  {/* The 'Live' link is now the entire card */}
                 </div>
               </div>
 
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-            </motion.div>
+              {/* Hover Overlay - CHANGED COLOR */}
+              <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+            </motion.a>
           ))}
         </motion.div>
       </div>
