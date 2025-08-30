@@ -20,7 +20,7 @@ const projects = [
     image: "/Screenshot 2025-08-29 175510.png",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
     github: "https://github.com/yourusername/ecommerce",
-    live: "https://ecommerce-demo.com",
+    live: "https://psp-app-web.vercel.app/",
     featured: true
   },
   {

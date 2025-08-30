@@ -4,43 +4,36 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 
-export default function LoadingScreen() {
+// Define the props interface for the component
+interface LoadingScreenProps {
+  onLoaded: () => void;
+}
+
+// Add the onLoaded prop to the component signature
+export default function LoadingScreen({ onLoaded }: LoadingScreenProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
-  const [currentText, setCurrentText] = useState(0)
-
-  const loadingTexts = [
-    "INITIALIZING NEURAL NETWORKS...",
-    "LOADING QUANTUM PROCESSORS...",
-    "ESTABLISHING HOLOGRAPHIC INTERFACE...",
-    "SYNCHRONIZING CYBER MATRIX...",
-    "ACTIVATING NEON PROTOCOLS...",
-    "SYSTEM READY FOR DEPLOYMENT..."
-  ]
 
   useEffect(() => {
-    // Simulate loading progress
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval)
-          setTimeout(() => setIsLoading(false), 1000)
-          return 100
+          // Call the onLoaded prop after a delay
+          setTimeout(() => {
+            setIsLoading(false);
+            onLoaded(); 
+          }, 1000);
+          return 100;
         }
         return prev + Math.random() * 8
-      })
-    }, 150)
-
-    // Cycle through loading texts
-    const textInterval = setInterval(() => {
-      setCurrentText(prev => (prev + 1) % loadingTexts.length)
-    }, 800)
+      });
+    }, 150);
 
     return () => {
-      clearInterval(interval)
-      clearInterval(textInterval)
-    }
-  }, [])
+      clearInterval(interval);
+    };
+  }, [onLoaded]); // Add onLoaded to the dependency array
 
   useEffect(() => {
     if (isLoading) {
@@ -51,11 +44,11 @@ export default function LoadingScreen() {
         stagger: 0.1,
         repeat: -1,
         ease: "power2.out"
-      })
+      });
     }
-  }, [isLoading])
+  }, [isLoading]);
 
-  if (!isLoading) return null
+  if (!isLoading) return null;
 
   return (
     <AnimatePresence>
@@ -116,33 +109,6 @@ export default function LoadingScreen() {
             >
               ASHUTOSH MISHRA
             </motion.p>
-            <motion.p
-              className="text-lg md:text-xl text-cyan-300 mt-2 tech-font"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.8 }}
-            >
-              CYBERPUNK DEVELOPER
-            </motion.p>
-          </motion.div>
-
-          {/* Loading Text */}
-          <motion.div
-            className="mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-          >
-            <motion.p
-              key={currentText}
-              className="text-lg md:text-xl text-cyan-400 tech-font font-semibold"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-            >
-              {loadingTexts[currentText]}
-            </motion.p>
           </motion.div>
 
           {/* Progress Bar */}
@@ -170,64 +136,23 @@ export default function LoadingScreen() {
             </motion.p>
           </motion.div>
 
-          {/* Status Indicators */}
+          {/* Glitch Overlay */}
           <motion.div
-            className="flex justify-center gap-4 mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.8 }}
-          >
-            {['NEURAL', 'QUANTUM', 'HOLO', 'CYBER'].map((status, index) => (
-              <motion.div
-                key={status}
-                className="flex items-center gap-2"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 2 + index * 0.2 }}
-              >
-                <motion.div
-                  className="w-3 h-3 rounded-full bg-green-400"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 1, repeat: Infinity, delay: index * 0.3 }}
-                />
-                <span className="text-green-400 text-sm tech-font">{status}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Enter Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 3 }}
-          >
-            <motion.button
-              className="cyber-button text-lg px-8 py-4"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsLoading(false)}
-            >
-              ENTER THE MATRIX
-            </motion.button>
-          </motion.div>
+            className="absolute inset-0 pointer-events-none"
+            animate={{
+              opacity: [0, 0.1, 0],
+            }}
+            transition={{
+              duration: 0.1,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            style={{
+              background: 'linear-gradient(45deg, transparent 40%, rgba(255, 0, 128, 0.1) 50%, transparent 60%)',
+            }}
+          />
         </div>
-
-        {/* Glitch Overlay */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          animate={{
-            opacity: [0, 0.1, 0],
-          }}
-          transition={{
-            duration: 0.1,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          style={{
-            background: 'linear-gradient(45deg, transparent 40%, rgba(255, 0, 128, 0.1) 50%, transparent 60%)',
-          }}
-        />
       </motion.div>
     </AnimatePresence>
-  )
+  );
 }
