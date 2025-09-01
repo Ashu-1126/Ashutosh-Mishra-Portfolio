@@ -18,16 +18,13 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // This effect runs only on the client side
     setMounted(true)
   }, [])
 
-  // Show the loading screen if the component is mounted and isLoading is true
   if (mounted && isLoading) {
     return <LoadingScreen onLoaded={() => setIsLoading(false)} />
   }
 
-  // Once loading is complete, render the main content
   if (mounted && !isLoading) {
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -40,14 +37,16 @@ export default function Home() {
           <AdvancedSkills />
           <CodingProfiles />
           <AdvancedProjects />
-          <AdvancedContact />
         </main>
-
-        <Footer />
+        
+        {/* New container for the contact and footer sections */}
+        <div className="bg-gray-900 dark:bg-black">
+          <AdvancedContact />
+          <Footer />
+        </div>
       </div>
     )
   }
 
-  // Render nothing on the server
   return null
 }

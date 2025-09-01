@@ -1,225 +1,208 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ExternalLink, Github, Eye } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Github, Play } from 'lucide-react'
 import Image from 'next/image'
-
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 const projects = [
   {
     id: 1,
     title: "Protein Structure Prediction",
-    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
+    description: "",
     image: "/Screenshot 2025-08-29 175510.png",
-    technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
-    github: "https://github.com/yourusername/ecommerce",
-    live: "https://psp-app-web.vercel.app/",
-    featured: true
+    technologies: ["React", "TensorFlow.js", "Python", "Bioinformatics", "Vercel"],
+    github: "https://github.com/yourusername/protein-structure-prediction",
+    youtube: "https://www.youtube.com/watch?v=your-video-id-1",
   },
   {
     id: 2,
-    title: "KavachG",
-    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
+    title: "SunMAP",
+    description: "",
     image: "/api/placeholder/400/300",
-    technologies: ["React", "Python", "Flask", "OpenAI API", "WebSocket"],
-    github: "https://github.com/yourusername/ai-chat",
-    live: "https://ai-chat-demo.com",
-    featured: true
+    technologies: ["React", "TensorFlow.js", "Python", "Bioinformatics", "Vercel"],
+    github: "https://github.com/yourusername/protein-structure-prediction",
+    youtube: "https://www.youtube.com/watch?v=your-video-id-1",
   },
   {
     id: 3,
-    title: "Blood Group Detection using fingerprint",
-    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
-    image: "/Screenshot 2025-08-29 181813.png",
-    technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-    github: "https://github.com/yourusername/task-manager",
-    live: "https://huggingface.co/spaces/ikkariss-geeko/blood-group-predictor-app",
-    featured: true
+    title: "KavachG",
+    description: "",
+    image: "/api/placeholder/400/300",
+    technologies: ["React", "Python", "Flask", "OpenAI API", "WebSocket"],
+    github: "https://github.com/yourusername/kavachg",
+    youtube: "https://www.youtube.com/watch?v=your-video-id-2",
   },
   {
     id: 4,
-    title: "Product Recommendation System",
-    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
-    image: "/Screenshot 2025-08-29 181238.png",
-    technologies: ["React", "Chart.js", "OpenWeatherMap API", "Geolocation"],
-    github: "https://github.com/yourusername/weather-dashboard",
-    live: "https://weather-demo.com",
-    featured: true
+    title: "Blood Group Detection",
+    description: "",
+    image: "/Screenshot 2025-08-29 181813.png",
+    technologies: ["React", "TensorFlow", "Image Processing", "Hugging Face"],
+    github: "https://github.com/yourusername/blood-group-detection",
+    youtube: "https://www.youtube.com/watch?v=your-video-id-3",
   },
   {
     id: 5,
-    title: "Jarvis AI",
-    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
-    image: "/api/placeholder/400/300",
-    technologies: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/yourusername/portfolio",
-    live: "https://portfolio-demo.com",
-    featured: true
+    title: "Product Recommendation System",
+    description: "",
+    image: "/Screenshot 2025-08-29 181238.png",
+    technologies: ["Python", "Pandas", "Scikit-learn", "Flask", "MongoDB"],
+    github: "https://github.com/yourusername/recommendation-system",
+    youtube: "https://www.youtube.com/watch?v=your-video-id-4",
   },
   {
     id: 6,
+    title: "Jarvis AI",
+    description: "",
+    image: "/api/placeholder/400/300",
+    technologies: ["Python", "SpeechRecognition", "OpenAI API", "PyQt5"],
+    github: "https://github.com/yourusername/jarvis-ai",
+    youtube: "https://www.youtube.com/watch?v=your-video-id-5",
+  },
+  {
+    id: 7,
     title: "Online Bookstore",
-    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est placeat maxime at illum nostrum, cumque rerum exercitationem repudiandae, impedit pariatur atque assumenda voluptatem corrupti quod omnis nulla libero voluptas illo!",
+    description: "",
     image: "/Screenshot 2025-08-29 182151.png",
-    technologies: ["React", "D3.js", "Node.js", "PostgreSQL", "Redis"],
-    github: "https://github.com/yourusername/social-analytics",
-    live: "https://analytics-demo.com",
-    featured: true
+    technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
+    github: "https://github.com/yourusername/online-bookstore",
+    youtube: "https://www.youtube.com/watch?v=your-video-id-6",
   }
 ]
 
-export default function AdvancedProjects() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null)
+export default function CarouselProjects() {
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  useEffect(() => {
-    if (!containerRef.current) return
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)
+  }
 
-    const cards = containerRef.current.querySelectorAll('.project-card')
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length)
+  }
 
-    cards.forEach((card, index) => {
-      gsap.fromTo(card,
-        {
-          opacity: 0,
-          y: 100,
-          rotationY: -15,
-          scale: 0.8
-        },
-        {
-          opacity: 1,
-          y: 0,
-          rotationY: 0,
-          scale: 1,
-          duration: 0.8,
-          delay: index * 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      )
-    })
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    }
-  }, [])
+  const currentProject = projects[currentIndex]
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
             Featured Projects
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Explore my latest work and creative solutions
           </p>
-        </motion.div>
+        </div>
 
-        {/* Projects Grid */}
-        <motion.div
-          ref={containerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          {projects.map((project, index) => (
-            <motion.a // Keep motion.a for the overall card animations
-              key={project.id}
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-card group relative bg-white/80 dark:bg-gray-800/80 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100/50 dark:border-gray-700/50 cursor-pointer backdrop-blur-sm overflow-hidden"
-              // REMOVED: whileHover={{ scale: 1.05, y: -10, rotateY: 5 }}
-              // ADDED: A subtle lift, no scale/rotate
-              whileHover={{ y: -5 }} // Only a slight lift, no scaling
-              whileTap={{ scale: 0.98 }} // Keeps a slight tap effect if desired
-              initial={{ opacity: 0, y: 100, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+        {/* Carousel Container */}
+        <div className="relative max-w-7xl mx-auto">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -50, scale: 0.9 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="bg-white/80 dark:bg-gray-800/80 rounded-2xl shadow-xl backdrop-blur-sm overflow-hidden border border-gray-100/50 dark:border-gray-700/50"
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-300 flex items-center justify-center text-white text-lg font-bold">
-                  {project.title}
+              <div className="md:flex">
+                {/* Image Section */}
+                <div className="relative h-64 md:h-auto md:w-1/2 overflow-hidden">
+                  <Image
+                    src={currentProject.image}
+                    alt={currentProject.title}
+                    fill
+                    style={{ objectFit: 'contain' }}
+                    className="transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
-                <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1 rounded-full text-xs font-medium text-white bg-green-500">
-                    {project.featured ? 'Featured' : ''}
-                  </span>
+
+                {/* Content Section */}
+                <div className="p-8 md:p-10 md:w-1/2 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+                      {currentProject.title}
+                    </h3>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                      {currentProject.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {currentProject.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="mt-6 flex flex-col sm:flex-row gap-4">
+                    {currentProject.github && (
+                      <a
+                        href={currentProject.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 py-3 px-6 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+                      >
+                        <Github className="w-5 h-5 inline mr-2" />
+                        GitHub
+                      </a>
+                    )}
+                    {currentProject.youtube && (
+                      <a
+                        href={currentProject.youtube}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center bg-red-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-200"
+                      >
+                        <Play className="w-5 h-5 inline mr-2" />
+                        Demo
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
+            </motion.div>
+          </AnimatePresence>
 
-              {/* Project Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
+          {/* Navigation Buttons */}
+          <div className="absolute inset-y-0 left-0 flex items-center">
+            <button
+              onClick={handlePrev}
+              className="bg-white/50 dark:bg-gray-800/50 text-gray-800 dark:text-gray-200 p-2 rounded-full backdrop-blur-sm shadow-md transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+          </div>
+          <div className="absolute inset-y-0 right-0 flex items-center">
+            <button
+              onClick={handleNext}
+              className="bg-white/50 dark:bg-gray-800/50 text-gray-800 dark:text-gray-200 p-2 rounded-full backdrop-blur-sm shadow-md transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-2">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-lg text-center text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
-                      onClick={(e) => e.stopPropagation()} // Important: Prevents the parent link from firing
-                    >
-                      <Github className="w-4 h-4 inline mr-2" />
-                      Code
-                    </a>
-                  )}
-                  {/* The 'Live' link is now the entire card */}
-                </div>
-              </div>
-
-              {/* Hover Overlay - CHANGED COLOR */}
-              <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-            </motion.a>
-          ))}
-        </motion.div>
+          {/* Pagination Dots */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'} transition-colors duration-200`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
