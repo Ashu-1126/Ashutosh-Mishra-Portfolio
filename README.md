@@ -64,7 +64,7 @@ A cutting-edge, interactive portfolio website built with the latest web technolo
 ### **Installation**
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone "https://github.com/Ashu-1126/Ashutosh-Mishra-Portfolio.git"
 cd Portfolio
 
 # Install dependencies
@@ -175,14 +175,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **GSAP** team for professional animation toolkit
 - **Tailwind CSS** team for utility-first CSS framework
 - **Three.js** community for 3D graphics library
-
-## 📞 **Contact**
-
-- **Portfolio**: [Your Portfolio URL]
-- **Email**: ashutosh.mishra@example.com
-- **LinkedIn**: [Your LinkedIn]
-- **GitHub**: [Your GitHub]
-
----
 
 **Built with ❤️ using Next.js, React, and modern web technologies** 
