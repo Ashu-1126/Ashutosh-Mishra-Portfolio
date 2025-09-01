@@ -64,7 +64,7 @@ A cutting-edge, interactive portfolio website built with the latest web technolo
 ### **Installation**
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone "https://github.com/Ashu-1126/Ashutosh-Mishra-Portfolio.git"
 cd Portfolio
 
 # Install dependencies
